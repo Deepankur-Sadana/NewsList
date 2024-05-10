@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -59,6 +61,25 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation ("androidx.navigation:navigation-compose:2.7.7")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
+
+    val hilt_version = "2.48"
+    val paging_version = "3.2.0"
+    // PAGING
+    implementation ("androidx.paging:paging-runtime-ktx:$paging_version")
+    implementation ("androidx.paging:paging-compose:$paging_version")
+
+    // HILT
+    implementation ("com.google.dagger:hilt-android:$hilt_version")
+//    ksp "com.google.dagger:hilt-compiler:$hilt_version"
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -66,4 +87,9 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
